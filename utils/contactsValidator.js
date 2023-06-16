@@ -16,3 +16,10 @@ exports.contactsValidate = data =>
         .required(),
     })
     .validate(data);
+exports.contactFavValidate = data =>
+  Joi.object()
+    .options({ abortEarly: false })
+    .keys({
+      favorite: Joi.bool().required(),
+    })
+    .validate(data);
