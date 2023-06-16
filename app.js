@@ -2,17 +2,8 @@ const express = require("express");
 const logger = require("morgan");
 const cors = require("cors");
 const dotenv = require("dotenv");
-const mongoose = require("mongoose");
 
 dotenv.config({ path: "./.env" });
-
-mongoose
-  .connect(process.env.MONGO_URL)
-  .then(() => console.log("DB connected"))
-  .catch(err => {
-    console.log("something wrong...", err);
-    process.exit(1);
-  });
 
 const contactsRouter = require("./routes/api/");
 
