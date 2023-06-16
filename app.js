@@ -18,7 +18,7 @@ const contactsRouter = require("./routes/api/");
 
 const app = express();
 
-const formatsLogger = app.get("env") === "development" ? "dev" : "short";
+const formatsLogger = process.env.ENV_DEV === "development" ? "dev" : "short";
 
 app.use(logger(formatsLogger));
 app.use(cors());
