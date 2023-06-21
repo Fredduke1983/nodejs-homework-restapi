@@ -6,15 +6,19 @@ const {
   addContact,
   removeContact,
   updateContact,
-} = require("../../models/contacts");
-const { checkContactById } = require("../../middlewares/contactsMiddleware");
+  updateStatusContact,
+} = require("../../controllers/contactsControllers");
+const checkContactById = require("../../middlewares/");
 
 router.route("/").get(listContacts).post(addContact);
+
 router.use("/:contactId", checkContactById);
+
 router
   .route("/:contactId")
   .get(getContactById)
   .delete(removeContact)
-  .put(updateContact);
+  .put(updateContact)
+  .patch(updateStatusContact);
 
 module.exports = router;
