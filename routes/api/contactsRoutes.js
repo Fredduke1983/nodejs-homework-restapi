@@ -7,7 +7,7 @@ const {
   removeContact,
   updateContact,
   updateStatusContact,
-} = require("../../controllers/");
+} = require("../../controllers/contactsControllers");
 const checkContactById = require("../../middlewares/");
 
 router.route("/").get(listContacts).post(addContact);
