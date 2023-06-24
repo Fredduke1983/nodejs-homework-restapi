@@ -1,5 +1,6 @@
-const Contact = require("../../models");
-const { catchAsync, contactFavValidate } = require("../../utils");
+const { errMessage } = require("../../constants/errors");
+const { Contact } = require("../../models");
+const { catchAsync, contactFavValidate, errorUser } = require("../../utils");
 
 exports.updateStatusContact = catchAsync(async (req, res) => {
   const { contactId } = req.params;
@@ -7,7 +8,7 @@ exports.updateStatusContact = catchAsync(async (req, res) => {
   const { error, value } = contactFavValidate(body);
 
   if (error) {
-    return res.status(400).json({ message: "missing field favorite" });
+    errorUser(400, errMessage.errMiss);
   }
 
   await Contact.findByIdAndUpdate(

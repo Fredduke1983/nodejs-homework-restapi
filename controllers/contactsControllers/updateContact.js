@@ -1,5 +1,6 @@
-const Contact = require("../../models");
-const { catchAsync, contactsValidate } = require("../../utils");
+const { errMessage } = require("../../constants/errors");
+const { Contact } = require("../../models");
+const { catchAsync, contactsValidate, errorUser } = require("../../utils");
 
 exports.updateContact = catchAsync(async (req, res) => {
   const { contactId } = req.params;
@@ -8,9 +9,7 @@ exports.updateContact = catchAsync(async (req, res) => {
   const { error, value } = contactsValidate(body);
 
   if (error) {
-    return res.status(400).json({
-      massage: "missing fields",
-    });
+    errorUser(400, errMessage.errMiss);
   }
 
   await Contact.findByIdAndUpdate(

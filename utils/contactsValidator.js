@@ -16,6 +16,7 @@ exports.contactsValidate = data =>
         .required(),
     })
     .validate(data);
+
 exports.contactFavValidate = data =>
   Joi.object()
     .options({ abortEarly: false })

@@ -1,23 +1,17 @@
-const { catchAsync } = require("../utils/");
-const Contact = require("../models/");
+const { catchAsync, errorUser } = require("../utils/");
+const { Contact } = require("../models/");
+const { errMessage } = require("../constants/errors");
 
 exports.checkContactById = catchAsync(async (req, res, next) => {
   const { contactId } = req.params;
 
-  if (contactId.length < 10)
-    return res.status(400).json({
-      message: "Bad request ...",
-    });
+  if (contactId.length < 10) errorUser(400, errMessage.errRequest);
 
-  const contact = await Contact.findById(contactId).catch(err => {
-    console.log(err.message);
-    return false;
+  const contact = await Contact.findById(contactId).catch(() => {
+    throw errorUser(404, errMessage.errNotFound);
   });
 
-  if (!contact)
-    return res.status(404).json({
-      message: "Contact not found",
-    });
+  if (!contact) errorUser(404, errMessage.errNotFound);
 
   req.contact = contact;
 
