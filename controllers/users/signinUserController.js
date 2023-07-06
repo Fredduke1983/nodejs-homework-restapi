@@ -16,6 +16,10 @@ exports.signinUser = catchAsync(async (req, res) => {
   const user = await User.findOne({ email: value.email });
   if (!user) errorUser(401, errMessage.errLogin);
 
+  if (!user.verify) {
+    errorUser(401, errMessage.errNotVerify);
+  }
+
   const comparePass = await bcrypt.compare(value.password, user.password);
   if (!comparePass) errorUser(401, errMessage.errLogin);
 

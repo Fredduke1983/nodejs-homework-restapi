@@ -1,4 +1,8 @@
-const { contactsValidate, contactFavValidate } = require("./contactsValidator");
+const {
+  contactsValidate,
+  contactFavValidate,
+  emailValidate,
+} = require("./contactsValidator");
 const catchAsync = require("./catchAsync");
 const { errorUser } = require("./errorUser");
 const { userSignupValidator, userSigninValidator } = require("./userValidator");
@@ -10,4 +14,5 @@ module.exports = {
   errorUser,
   userSignupValidator,
   userSigninValidator,
+  emailValidate,
 };

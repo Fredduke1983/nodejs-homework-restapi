@@ -24,3 +24,14 @@ exports.contactFavValidate = data =>
       favorite: Joi.bool().required(),
     })
     .validate(data);
+
+exports.emailValidate = data =>
+  Joi.object()
+    .options({ abortEarly: false })
+    .keys({
+      email: Joi.string()
+        // eslint-disable-next-line no-useless-escape
+        .pattern(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)
+        .required(),
+    })
+    .validate(data);
