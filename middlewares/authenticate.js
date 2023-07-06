@@ -24,6 +24,5 @@ exports.authenticate = catchAsync(async (req, res, next) => {
   } catch (error) {
     errorUser(401, errMessage.errAuth);
   }
-
   next();
 });
