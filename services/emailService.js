@@ -1,7 +1,10 @@
 const nodeMailer = require("nodemailer");
 
 const verifyEmailTransport = async data => {
-  const email = { ...data, from: "ihor.nechai@meta.ua" };
+  const emailLogin = process.env.EMAIL_LOGIN;
+  const emailPass = process.env.EMAIL_PASS;
+
+  const email = { ...data, from: emailLogin };
 
   const transportMail = nodeMailer.createTransport({
     host: "smtp.meta.ua",
@@ -9,12 +12,10 @@ const verifyEmailTransport = async data => {
     secure: true,
 
     auth: {
-      user: "ihor.nechai@meta.ua",
-      pass: "Mailware_2",
+      user: emailLogin,
+      pass: emailPass,
     },
   });
-
-  console.log("EMAIL ---", email);
 
   await transportMail.sendMail(email);
   return true;
