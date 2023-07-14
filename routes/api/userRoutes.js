@@ -7,11 +7,15 @@ const {
   getCurrent,
   logout,
   subscriptUpdate,
+  verifyUser,
+  resendEmail,
 } = require("../../controllers/users/");
 const changeAvatar = require("../../controllers/users/changeAvatar");
 const router = Router();
 
 router.post("/register", uniqueUserValidate, signupUser);
+router.get("/verify/:verificationToken", verifyUser);
+router.post("/verify", resendEmail);
 router.post("/login", signinUser);
 router.get("/current", authenticate, getCurrent);
 router.post("/logout", authenticate, logout);

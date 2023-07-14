@@ -11,7 +11,7 @@ exports.addContact = catchAsync(async (req, res) => {
     errorUser(400, errMessage.errRequest);
   }
   const uniqContact = await Contact.findOne({ email: `${req.body.email}` });
-  console.log(uniqContact);
+
   if (uniqContact) errorUser(400, errMessage.errUniq);
 
   await Contact.create({ ...value, owner });

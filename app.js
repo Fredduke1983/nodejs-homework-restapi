@@ -6,6 +6,8 @@ const { contactsRouter } = require("./routes/api/");
 const { userRouter } = require("./routes/api/");
 const { errMessage } = require("./constants/errors");
 
+console.log("=========================");
+
 dotenv.config({ path: "./.env" });
 
 const app = express();

@@ -7,4 +7,6 @@ exports.errMessage = {
   errLogin: `Email or password incorrect`,
   errAuth: `No authorization`,
   errMiss: `Missing fields`,
+  errNotVerify: `Email not verified`,
+  errVerify: `Email already verified`,
 };
